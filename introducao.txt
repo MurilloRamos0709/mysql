@@ -1,1 +1,29 @@
 Introdução ao banco de dados
+package br.com.agenda.dal;
+
+import java.sql.*;
+
+public class ModuloConexao{
+	//a classe abaixo cria um método de conexão com retorno
+	public static Connection conector(){
+	//criando uma variável para receber a conexão
+		java.sql.Connection conexao = null;
+	//criando uma variável para o driver
+		String driver = "com.mysql.jdbc.Driver";
+	//caminho, banco, ssl
+		String url = "jdbc:mysql://10.26.45.111:3306/agenda?useSSL=false";
+	//autenticação
+		String user = "admin";
+		String password = "123@Senac";
+	//tratamento de exceções
+		try{
+			Class.forName(driver);
+			conexao = DriverManager.getConnection(url, user, password);
+			return conexao;
+		}
+		catch (Exception e){
+			System.out.println(e);
+			return null;
+		}
+	}
+}
